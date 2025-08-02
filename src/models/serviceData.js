@@ -35,6 +35,36 @@ const serviceDataSchema = mongoose.Schema(
       type: Date,
       default: new Date(Date.now()),
     },
+    fkcustomerComplaintsDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "customerComplaintsData",
+    },
+    fkafterServiceComplaintsDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "afterServiceComplaintsData",
+    },
+    fkmechanicObservationsDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "mechanicObservationsData",
+    },
+    fkpartsAndAccessoriesDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "partsAndAccessoriesData",
+    },
+    fkbillingDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "billingData",
+    },
+    fkserviceFeedbackDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "serviceFeedbackData",
+    },
   },
   {
     timestamps: true,
