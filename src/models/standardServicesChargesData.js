@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const { type } = require("os");
-const validator = require("validator");
-const { boolean } = require("webidl-conversions");
 const standardServicesChargesDataSchema = mongoose.Schema(
   {
     fkgarageId: {
@@ -31,7 +28,7 @@ const standardServicesChargesDataSchema = mongoose.Schema(
             maxLength: 1000,
           },
           isChecked: {
-            type: boolean,
+            type: Boolean,
             default: true,
           },
           quantity: {

@@ -3,6 +3,7 @@ const app = new express();
 const connectDatabase = require("./database/dbManager");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const dummyRouter = require("./routers/dummyRouter");
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -11,6 +12,7 @@ app.use(
     credentials: true,
   })
 );
+app.use("/", dummyRouter);
 connectDatabase()
   .then(() => {
     console.log("Database connected successfully.");

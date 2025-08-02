@@ -54,6 +54,10 @@ const pickupChargesDataSchema = mongoose.Schema(
             minLength: 0,
             maxLength: 300,
           },
+          dateOfAmountFixed: {
+            type: Date,
+            default: new Date(Date.now()),
+          },
         },
       ],
     },

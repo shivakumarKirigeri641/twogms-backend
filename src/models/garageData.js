@@ -24,8 +24,6 @@ const garageDataSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minLength: 5,
-      maxLength: 100,
       validate(value) {
         if (!validator.isStrongPassword(value)) {
           throw new Error("Password is weak!");
@@ -37,6 +35,18 @@ const garageDataSchema = mongoose.Schema(
       required: true,
       minLength: 3,
       maxLength: 300,
+    },
+    loginLogoutRecords: {
+      type: [
+        {
+          loginDateTime: {
+            type: Date,
+          },
+          logoutDateTime: {
+            type: Date,
+          },
+        },
+      ],
     },
   },
   {
