@@ -37,22 +37,18 @@ const serviceDataSchema = mongoose.Schema(
     },
     fkcustomerComplaintsDataId: {
       type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
       ref: "customerComplaintsData",
     },
     fkafterServiceComplaintsDataId: {
       type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
       ref: "afterServiceComplaintsData",
     },
     fkmechanicObservationsDataId: {
       type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
       ref: "mechanicObservationsData",
     },
     fkpartsAndAccessoriesDataId: {
       type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
       ref: "partsAndAccessoriesData",
     },
     fkbillingDataId: {
@@ -62,8 +58,17 @@ const serviceDataSchema = mongoose.Schema(
     },
     fkserviceFeedbackDataId: {
       type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
       ref: "serviceFeedbackData",
+    },
+    fkservicedeliveryDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "serviceDeliveryData",
+    },
+    fknextServiceDataId: {
+      type: new mongoose.Schema.Types.ObjectId(),
+      required: true,
+      ref: "nextServiceData",
     },
   },
   {

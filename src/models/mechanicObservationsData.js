@@ -31,8 +31,8 @@ const mechanicObservationsDataSchema = mongoose.Schema(
             maxLength: 1000,
           },
           isChecked: {
-            type: boolean,
-            default: true,
+            type: Boolean,
+            default: false,
           },
           quantity: {
             type: Number,
