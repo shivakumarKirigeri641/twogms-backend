@@ -5,16 +5,14 @@ const twoWheelerDataSchema = mongoose.Schema(
   {
     variantName: {
       type: String,
-      required: true,
-      unique: true,
       minLength: 2,
-      maxLength: 50,
+      maxLength: 100,
     },
     photoUrl: {
       type: String,
       validate(value) {
         if ("" === value) return;
-        if (!validator.photoUrl(value)) {
+        if (!validator.isURL(value)) {
           throw new Error("Invalid photo Url!");
         }
       },
@@ -23,13 +21,13 @@ const twoWheelerDataSchema = mongoose.Schema(
       type: String,
       validate(value) {
         if ("" === value) return;
-        if (!validator.photoUrl(value)) {
+        if (!validator.isURL(value)) {
           throw new Error("Invalid logo Url!");
         }
       },
     },
     isElectric: {
-      type: boolean,
+      type: Boolean,
       default: false,
     },
   },
