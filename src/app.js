@@ -4,6 +4,7 @@ const connectDatabase = require("./database/dbManager");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dummyRouter = require("./routers/dummyRouter");
+const serviceRouter = require("./routers/serviceRouter");
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -13,6 +14,7 @@ app.use(
   })
 );
 app.use("/", dummyRouter);
+app.use("/", serviceRouter);
 connectDatabase()
   .then(() => {
     console.log("Database connected successfully.");

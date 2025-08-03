@@ -17,6 +17,18 @@ const serviceDataSchema = mongoose.Schema(
       default: 1,
       required: true,
     },
+    serviceStatus: {
+      type: Number,
+      default: 2,
+      min: -1,
+      max: 2,
+      required: true,
+    },
+    isLatestService: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     kmDriven: {
       type: Number,
       default: 0,
