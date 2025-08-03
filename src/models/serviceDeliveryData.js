@@ -26,6 +26,6 @@ const serviceDeliveryDataSchema = mongoose.Schema(
 );
 const serviceDeliveryData = mongoose.model(
   "serviceDeliveryData",
-  servicedeliveryDataSchema
+  serviceDeliveryDataSchema
 );
 module.exports = serviceDeliveryData;
