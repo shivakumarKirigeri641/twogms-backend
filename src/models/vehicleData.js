@@ -7,12 +7,12 @@ const vehicleDataSchema = mongoose.Schema(
       required: true,
     },
     fkcustomerDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "customerData",
     },
     fktwoWheelerDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "twoWheelerData",
     },

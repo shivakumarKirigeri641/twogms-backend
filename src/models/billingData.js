@@ -3,7 +3,7 @@ const billingDataSchema = mongoose.Schema(
   {
     partsAndAccessoriesData: {
       fkpartsAndAccessoriesDataId: {
-        type: new mongoose.Schema.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "partsAndAccessoriesData",
       },
@@ -14,7 +14,7 @@ const billingDataSchema = mongoose.Schema(
     },
     standardServicesChargesData: {
       standardServicesChargesDataId: {
-        type: new mongoose.Schema.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "standardServicesChargesData",
       },
@@ -25,7 +25,7 @@ const billingDataSchema = mongoose.Schema(
     },
     labourChargesData: {
       labourChargesDataId: {
-        type: new mongoose.Schema.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "labourChargesData",
       },
@@ -36,7 +36,7 @@ const billingDataSchema = mongoose.Schema(
     },
     washingChargesData: {
       washingChargesDataId: {
-        type: new mongoose.Schema.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "washingChargesData",
       },

@@ -3,12 +3,12 @@ const validator = require("validator");
 const serviceDataSchema = mongoose.Schema(
   {
     fkgarageId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",
     },
     fkvehicleDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "vehicleData",
     },
@@ -48,37 +48,37 @@ const serviceDataSchema = mongoose.Schema(
       default: new Date(Date.now()),
     },
     fkcustomerComplaintsDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "customerComplaintsData",
     },
     fkafterServiceComplaintsDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "afterServiceComplaintsData",
     },
     fkmechanicObservationsDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "mechanicObservationsData",
     },
     fkpartsAndAccessoriesDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "partsAndAccessoriesData",
     },
     fkbillingDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "billingData",
     },
     fkserviceFeedbackDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "serviceFeedbackData",
     },
     fkservicedeliveryDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "serviceDeliveryData",
     },
     fknextServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "nextServiceData",
     },

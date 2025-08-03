@@ -5,7 +5,7 @@ const { boolean } = require("webidl-conversions");
 const pickupChargesDataSchema = mongoose.Schema(
   {
     fkgarageId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",
     },

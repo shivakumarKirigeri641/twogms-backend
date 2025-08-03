@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const standardServicesChargesDataSchema = mongoose.Schema(
   {
     fkgarageId: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",
     },
