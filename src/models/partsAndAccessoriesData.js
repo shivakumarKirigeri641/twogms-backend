@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
-const { type } = require("os");
-const validator = require("validator");
-const { boolean } = require("webidl-conversions");
 const partsAndAccessoriesDataSchema = mongoose.Schema(
   {
-    fkServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
-      ref: "serviceData",
-    },
     list: {
       type: [
         {

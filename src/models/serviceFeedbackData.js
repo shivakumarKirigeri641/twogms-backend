@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const serviceFeedbackDataSchema = mongoose.Schema(
   {
-    fkServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
-      ref: "serviceData",
-    },
     rating: {
       type: Number,
       min: 0,

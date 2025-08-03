@@ -4,11 +4,6 @@ const validator = require("validator");
 const { boolean } = require("webidl-conversions");
 const customerComplaintsDataSchema = mongoose.Schema(
   {
-    fkServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
-      ref: "serviceData",
-    },
     list: {
       type: [
         {

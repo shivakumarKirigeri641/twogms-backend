@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const nextServiceDataSchema = mongoose.Schema(
   {
-    fkServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
-      ref: "serviceData",
-    },
     kmForNextService: {
       type: Number,
       default: 0,
