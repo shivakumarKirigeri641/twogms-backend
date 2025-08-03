@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const billingDataSchema = mongoose.Schema(
   {
-    fkServiceDataId: {
-      type: new mongoose.Schema.Types.ObjectId(),
-      required: true,
-      ref: "serviceData",
-    },
     partsAndAccessoriesData: {
       fkpartsAndAccessoriesDataId: {
         type: new mongoose.Schema.Types.ObjectId(),
@@ -13,7 +8,7 @@ const billingDataSchema = mongoose.Schema(
         ref: "partsAndAccessoriesData",
       },
       isChecked: {
-        type: boolean,
+        type: Boolean,
         default: false,
       },
     },
@@ -24,7 +19,7 @@ const billingDataSchema = mongoose.Schema(
         ref: "standardServicesChargesData",
       },
       isChecked: {
-        type: boolean,
+        type: Boolean,
         default: false,
       },
     },
@@ -35,7 +30,7 @@ const billingDataSchema = mongoose.Schema(
         ref: "labourChargesData",
       },
       isChecked: {
-        type: boolean,
+        type: Boolean,
         default: false,
       },
     },
@@ -46,7 +41,7 @@ const billingDataSchema = mongoose.Schema(
         ref: "washingChargesData",
       },
       isChecked: {
-        type: boolean,
+        type: Boolean,
         default: false,
       },
     },
