@@ -26,7 +26,7 @@ const afterServiceComplaintsDataSchema = mongoose.Schema(
             maxLength: 1000,
           },
           isChecked: {
-            type: boolean,
+            type: Boolean,
             default: true,
           },
           quantity: {
