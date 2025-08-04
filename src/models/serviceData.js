@@ -82,6 +82,11 @@ const serviceDataSchema = mongoose.Schema(
       required: true,
       ref: "nextServiceData",
     },
+    fkassignedStaffDataId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "assignedStaffData",
+    },
   },
   {
     timestamps: true,
