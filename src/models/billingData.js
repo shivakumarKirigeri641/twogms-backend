@@ -91,6 +91,13 @@ const billingDataSchema = mongoose.Schema(
             min: 0,
             max: 10000,
           },
+          amountPaid: {
+            type: Number,
+            default: 0,
+            required: true,
+            min: 0,
+            max: 10000,
+          },
           onlinePay: {
             type: Number,
             default: 0,

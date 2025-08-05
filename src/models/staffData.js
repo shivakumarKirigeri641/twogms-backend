@@ -17,6 +17,10 @@ const staffDataSchema = mongoose.Schema(
       minLength: 10,
       maxLength: 10,
     },
+    staffPassword: {
+      type: String,
+      required: true,
+    },
     isGarageOwner: {
       type: Boolean,
       required: true,
