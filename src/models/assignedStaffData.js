@@ -3,7 +3,7 @@ const assignedStaffDataSchema = mongoose.Schema({
   staffs: {
     type: [
       {
-        fkstaffDataId: {
+        fkStaffDataId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "staffData",
         },

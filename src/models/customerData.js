@@ -41,6 +41,18 @@ const customerDataSchema = mongoose.Schema(
         }
       },
     },
+    smsNotifications: {
+      type: Boolean,
+      default: true,
+    },
+    whatsAppNotifications: {
+      type: Boolean,
+      default: true,
+    },
+    emailNotifications: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,

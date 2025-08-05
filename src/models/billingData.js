@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const billingDataSchema = mongoose.Schema(
   {
     partsAndAccessoriesData: {
-      fkpartsAndAccessoriesDataId: {
+      fkPartsAndAccessoriesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "partsAndAccessoriesData",
@@ -13,7 +13,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     standardServicesChargesData: {
-      fkstandardServicesChargesDataId: {
+      fkStandardServicesChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "standardServicesChargesData",
@@ -24,7 +24,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     labourChargesData: {
-      fklabourChargesDataId: {
+      fkLabourChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "labourChargesData",
@@ -35,7 +35,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     washingChargesData: {
-      fkwashingChargesDataId: {
+      fkWashingChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "washingChargesData",
@@ -46,7 +46,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     pickupChargesData: {
-      fkpickupChargesDataId: {
+      fkPickupChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "pickupChargesData",
@@ -57,7 +57,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     dropChargesData: {
-      fkdropChargesDataId: {
+      fkDropChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "dropChargesData",
