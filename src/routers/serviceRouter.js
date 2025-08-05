@@ -13,11 +13,11 @@ serviceRouter.get(
       const result = await serviceData
         .find({
           $and: [
-            { fkgarageId: req.credentialsData._id },
+            { fkGarageId: req.credentialsData._id },
             { isLatestService: false },
           ],
         })
-        .select("fkgarageId")
+        .select("fkGarageId")
         .populate({
           path: "fkcustomerComplaintsDataId",
         })
@@ -26,7 +26,7 @@ serviceRouter.get(
         })
         .populate({
           path: "fkassignedStaffDataId",
-          populate: "staffs.fkstaffDataId",
+          populate: "staffs.fkStaffDataId",
         });
       //
       res.json({ status: "Ok", data: result });

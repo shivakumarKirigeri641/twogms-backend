@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const serviceDataSchema = mongoose.Schema(
   {
-    fkgarageId: {
+    fkGarageId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",
     },
-    fkvehicleDataId: {
+    fkVehicleDataId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "vehicleData",
@@ -59,7 +59,7 @@ const serviceDataSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "mechanicObservationsData",
     },
-    fkpartsAndAccessoriesDataId: {
+    fkPartsAndAccessoriesDataId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "partsAndAccessoriesData",
     },

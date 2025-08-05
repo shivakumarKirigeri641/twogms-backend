@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const billingDataSchema = mongoose.Schema(
   {
     partsAndAccessoriesData: {
-      fkpartsAndAccessoriesDataId: {
+      fkPartsAndAccessoriesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "partsAndAccessoriesData",
@@ -46,7 +46,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     pickupChargesData: {
-      fkpickupChargesDataId: {
+      fkPickupChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "pickupChargesData",
@@ -57,7 +57,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     dropChargesData: {
-      fkdropChargesDataId: {
+      fkDropChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "dropChargesData",
