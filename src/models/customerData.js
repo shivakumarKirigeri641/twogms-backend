@@ -49,6 +49,10 @@ const customerDataSchema = mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    emailNotifications: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
