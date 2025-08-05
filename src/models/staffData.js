@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const staffDataSchema = mongoose.Schema(
   {
-    fkGarageId: {
+    fkGarageDataId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "garageData",
     },

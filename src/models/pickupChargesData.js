@@ -4,7 +4,7 @@ const validator = require("validator");
 const { boolean } = require("webidl-conversions");
 const pickupChargesDataSchema = mongoose.Schema(
   {
-    fkGarageId: {
+    fkGarageDataId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",

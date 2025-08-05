@@ -13,7 +13,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     standardServicesChargesData: {
-      fkstandardServicesChargesDataId: {
+      fkStandardServicesChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "standardServicesChargesData",
@@ -24,7 +24,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     labourChargesData: {
-      fklabourChargesDataId: {
+      fkLabourChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "labourChargesData",
@@ -35,7 +35,7 @@ const billingDataSchema = mongoose.Schema(
       },
     },
     washingChargesData: {
-      fkwashingChargesDataId: {
+      fkWashingChargesDataId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "washingChargesData",

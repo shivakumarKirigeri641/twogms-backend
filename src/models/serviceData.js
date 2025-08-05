@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const serviceDataSchema = mongoose.Schema(
   {
-    fkGarageId: {
+    fkGarageDataId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "garageData",
