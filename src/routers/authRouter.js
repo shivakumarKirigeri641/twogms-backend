@@ -1,40 +1,65 @@
 const express = require("express");
 const argon2 = require("argon2");
-const createJWTToken = require("../utils/createJWTToken");
 const authRouter = express.Router();
-const garageData = require("../models/garageData");
+const staffData = require("../models/staffData");
+const getJWTToken = require("../utils/getJWTToken");
+const checkAuthentication = require("./middleware/checkAuthentication");
 //register garage (do it later as it includes garage entry, stdservice entry, wash, lbr details)
+//to register, garage owner needs to provide
+//1. std service price, list of services. (either individual prcies or all in one std service price) (any photo)
+//2. labour charges
+//3. washing charges
+//4. air-blow charges (if applicable)
+//5. pickup-drop charges (if applicable)
+//6. no. of staffs & their name & phone numbers
+//7. We provide with owner login credentials & staff credentials
 
 //login
 authRouter.post("/twogms/login", async (req, res) => {
-  let garagedetails = null;
   try {
-    const { phoneNumber, password } = req.body;
-    if (phoneNumber && password) {
-      garagedetails = await garageData.findOne({
-        garageOwnerMobileNumber: phoneNumber,
+    const result = await staffData
+      .findOne({ staffMobileNumber: req.body.phoneNumber })
+      .populate({
+        path: "fkGarageDataId",
+        select: "garageName garageOwnerName garageAddress",
       });
-      if (!garagedetails) {
-        throw new Error("Invalid credentials!");
-      }
-      const ispwdcorrect = await argon2.verify(
-        garagedetails.password,
-        password
-      );
-
-      if (!ispwdcorrect) {
-        throw new Error("Invalid credentials!");
-      }
-      req.credentialsData = garagedetails;
-      const token = await createJWTToken(req);
-      res.cookie("token", token);
+    if (!result) {
+      throw new Error("User does not exists!");
     } else {
-      throw new Error("Invalid credentials!");
+      if (result.isGarageOwner) {
+        //owner himself is logging in, now fetch details of him)
+        const isPwdCorrect = await argon2.verify(
+          result?.fkGarageDataId?.password,
+          req.body.password
+        );
+        if (!isPwdCorrect) {
+          throw new Error("Invalid credentails!");
+        }
+      } else {
+        //staff login
+        const isPwdCorrect = await argon2.verify(
+          result?.staffPassword,
+          req.body.password
+        );
+        if (!isPwdCorrect) {
+          throw new Error("Invalid staff credentails!");
+        }
+      }
     }
-    res.status(200).json({ status: "Ok", data: garagedetails });
+    //generate token for this to send as response
+    const token = await getJWTToken(result);
+    res.cookie("token", token, { expiresIn: "30s" });
+    res.status(200).json({ status: "ok", data: result });
   } catch (err) {
-    res.json({ status: "Failed", message: err.message });
+    res.statur(401).json({ status: "Failed", message: err.message });
   }
 });
-//logout
+authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
+  try {
+    res.cookie("token", null, { expires: new Date(Date.now()) });
+    res.json({ status: "ok", message: "Loggout successfully!" });
+  } catch (err) {
+    res.status(401).json({ status: "Failed", message: err.message });
+  }
+});
 module.exports = authRouter;
