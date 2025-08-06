@@ -28,20 +28,20 @@ authRouter.post("/twogms/login", async (req, res) => {
     } else {
       if (result.isGarageOwner) {
         //owner himself is logging in, now fetch details of him)
-        const ispwdcorrect = await argon2.verify(
+        const isPwdCorrect = await argon2.verify(
           result?.fkGarageDataId?.password,
           req.body.password
         );
-        if (!ispwdcorrect) {
+        if (!isPwdCorrect) {
           throw new Error("Invalid credentails!");
         }
       } else {
         //staff login
-        const ispwdcorrect = await argon2.verify(
+        const isPwdCorrect = await argon2.verify(
           result?.staffPassword,
           req.body.password
         );
-        if (!ispwdcorrect) {
+        if (!isPwdCorrect) {
           throw new Error("Invalid staff credentails!");
         }
       }
