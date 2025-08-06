@@ -4,6 +4,8 @@ const argon2 = require("argon2");
 const authRouter = express.Router();
 const staffData = require("../models/staffData");
 const garageData = require("../models/garageData");
+const getJWTToken = require("../utils/getJWTToken");
+const checkAuthentication = require("./middleware/checkAuthentication");
 //register garage (do it later as it includes garage entry, stdservice entry, wash, lbr details)
 //to register, garage owner needs to provide
 //1. std service price, list of services. (either individual prcies or all in one std service price) (any photo)
@@ -23,7 +25,6 @@ authRouter.post("/twogms/login", async (req, res) => {
         path: "fkGarageDataId",
         select: "garageName garageOwnerName garageAddress",
       });
-    console.log(result);
     if (!result) {
       throw new Error("User does not exists!");
     } else {
@@ -42,13 +43,23 @@ authRouter.post("/twogms/login", async (req, res) => {
           result?.staffPassword,
           req.body.password
         );
-        console.log("heere");
         if (!ispwdcorrect) {
           throw new Error("Invalid staff credentails!");
         }
       }
     }
+    //generate token for this to send as response
+    const token = await getJWTToken(result);
+    res.cookie("token", token, { expiresIn: "30s" });
     res.json({ status: "ok", data: result });
+  } catch (err) {
+    res.json({ status: "Failed", message: err.message });
+  }
+});
+authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
+  try {
+    res.cookie("token", null, { expires: new Date(Date.now()) });
+    res.json({ status: "ok", message: "Loggout successfully!" });
   } catch (err) {
     res.json({ status: "Failed", message: err.message });
   }
