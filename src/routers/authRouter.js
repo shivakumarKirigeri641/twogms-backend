@@ -1,9 +1,7 @@
 const express = require("express");
 const argon2 = require("argon2");
-//const createJWTToken = require("../utils/createJWTToken");
 const authRouter = express.Router();
 const staffData = require("../models/staffData");
-const garageData = require("../models/garageData");
 const getJWTToken = require("../utils/getJWTToken");
 const checkAuthentication = require("./middleware/checkAuthentication");
 //register garage (do it later as it includes garage entry, stdservice entry, wash, lbr details)
@@ -51,9 +49,9 @@ authRouter.post("/twogms/login", async (req, res) => {
     //generate token for this to send as response
     const token = await getJWTToken(result);
     res.cookie("token", token, { expiresIn: "30s" });
-    res.json({ status: "ok", data: result });
+    res.status(200).json({ status: "ok", data: result });
   } catch (err) {
-    res.json({ status: "Failed", message: err.message });
+    res.statur(401).json({ status: "Failed", message: err.message });
   }
 });
 authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
@@ -61,7 +59,7 @@ authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
     res.cookie("token", null, { expires: new Date(Date.now()) });
     res.json({ status: "ok", message: "Loggout successfully!" });
   } catch (err) {
-    res.json({ status: "Failed", message: err.message });
+    res.status(401).json({ status: "Failed", message: err.message });
   }
 });
 module.exports = authRouter;
