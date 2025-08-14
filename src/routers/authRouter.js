@@ -48,7 +48,7 @@ authRouter.post("/twogms/login", async (req, res) => {
     }
     //generate token for this to send as response
     const token = await getJWTToken(result);
-    res.cookie("token", token, { expiresIn: "30s" });
+    res.cookie("token", token, { expiresIn: "1d" });
     //once all good, select only the required details by firing query again.
     result = await staffData
       .findOne({ staffMobileNumber: req.body.phoneNumber })
