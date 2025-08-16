@@ -17,11 +17,11 @@ const checkAuthentication = require("./middleware/checkAuthentication");
 //login
 authRouter.post("/twogms/login", async (req, res) => {
   try {
-    const result = await staffData
+    let result = await staffData
       .findOne({ staffMobileNumber: req.body.phoneNumber })
       .populate({
         path: "fkGarageDataId",
-        select: "garageName garageOwnerName garageAddress",
+        select: "garageName garageOwnerName garageAddress password",
       });
     if (!result) {
       throw new Error("User does not exists!");
@@ -48,10 +48,17 @@ authRouter.post("/twogms/login", async (req, res) => {
     }
     //generate token for this to send as response
     const token = await getJWTToken(result);
-    res.cookie("token", token, { expiresIn: "30s" });
+    res.cookie("token", token, { expiresIn: "1d" });
+    //once all good, select only the required details by firing query again.
+    result = await staffData
+      .findOne({ staffMobileNumber: req.body.phoneNumber })
+      .populate({
+        path: "fkGarageDataId",
+        select: "garageName garageOwnerName garageAddress",
+      });
     res.status(200).json({ status: "ok", data: result });
   } catch (err) {
-    res.statur(401).json({ status: "Failed", message: err.message });
+    res.status(401).json({ status: "Failed", message: err.message });
   }
 });
 authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {

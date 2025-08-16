@@ -4,12 +4,13 @@ require("dotenv").config();
 const checkAuthentication = async (req, res, next) => {
   try {
     const { token } = req.cookies;
+    console.log(req.cookies);
     if (!token) {
-      throw new Error("Session expired!");
+      throw new Error("Session expired (No token)!");
     }
     const result = await jwt.verify(token, process.env.SECRET_KEY);
     if (!result) {
-      throw new Error("Session expired!");
+      throw new Error("Session expired (Invalid tokeN)!");
     }
     const credentials = await staffData.findById(result._id);
     if (!credentials) {

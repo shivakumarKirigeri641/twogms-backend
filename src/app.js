@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:1234",
+    origin: "http://192.168.10.34:1234",
     credentials: true,
   })
 );
@@ -20,7 +20,7 @@ app.use("/", authRouter);
 connectDatabase()
   .then(() => {
     console.log("Database connected successfully.");
-    app.listen(7777, () => {
+    app.listen(7777, "0.0.0.0", () => {
       console.log("Server is listening now...");
     });
   })
