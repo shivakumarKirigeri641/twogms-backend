@@ -57,18 +57,18 @@ authRouter.post("/twogms/login", async (req, res) => {
         select: "garageName garageOwnerName garageAddress",
       });
     //update login datetime in staffdata
-    if (0 !== result.loginLogoutRecords.length) {
+    if (1 <= result.loginLogoutRecords.length) {
       if (
         null ===
         result.loginLogoutRecords[result.loginLogoutRecords.length - 1]
           .logoutDateTime
       ) {
-        let updatelogout =
-          result.loginLogoutRecords[result.loginLogoutRecords.length - 1];
-        updatelogout.logoutDateTime = result.loginLogoutRecords[
+        result.loginLogoutRecords[
+          result.loginLogoutRecords.length - 1
+        ].logoutDateTime = result.loginLogoutRecords[
           result.loginLogoutRecords.length - 1
         ].loginDateTime.setHours(22, 0, 0, 0);
-        await updatelogout.save();
+        await result.save();
       }
     }
     result.loginLogoutRecords.push({ loginDateTime: new Date() });
@@ -81,10 +81,13 @@ authRouter.post("/twogms/login", async (req, res) => {
 authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
   try {
     //upadte staffdata
-    const updatelogout =
-      result.loginLogoutRecords[result.loginLogoutRecords.length - 1];
-    updatelogout.logoutDateTime = new Date();
-    await updatelogout.save();
+    let result = await staffData.findOne({
+      staffMobileNumber: req.loginCredentials.staffMobileNumber,
+    });
+    result.loginLogoutRecords[
+      result.loginLogoutRecords.length - 1
+    ].logoutDateTime = new Date();
+    await result.save();
     res.cookie("token", null, { expires: new Date(Date.now()) });
     res.json({ status: "ok", message: "Loggout successfully!" });
   } catch (err) {
