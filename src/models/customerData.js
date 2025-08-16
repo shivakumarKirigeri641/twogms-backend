@@ -5,7 +5,6 @@ const customerDataSchema = mongoose.Schema(
     customerName: {
       type: String,
       required: true,
-      unique: true,
       minLength: 2,
       maxLength: 50,
     },

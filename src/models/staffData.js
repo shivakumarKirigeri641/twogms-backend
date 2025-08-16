@@ -26,6 +26,18 @@ const staffDataSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    loginLogoutRecords: {
+      type: [
+        {
+          loginDateTime: {
+            type: Date,
+          },
+          logoutDateTime: {
+            type: Date,
+          },
+        },
+      ],
+    },
   },
   {
     timestamps: true,

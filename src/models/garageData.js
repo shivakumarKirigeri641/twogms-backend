@@ -36,18 +36,6 @@ const garageDataSchema = mongoose.Schema(
       minLength: 3,
       maxLength: 300,
     },
-    loginLogoutRecords: {
-      type: [
-        {
-          loginDateTime: {
-            type: Date,
-          },
-          logoutDateTime: {
-            type: Date,
-          },
-        },
-      ],
-    },
   },
   {
     timestamps: true,

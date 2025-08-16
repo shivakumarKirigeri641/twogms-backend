@@ -56,6 +56,23 @@ authRouter.post("/twogms/login", async (req, res) => {
         path: "fkGarageDataId",
         select: "garageName garageOwnerName garageAddress",
       });
+    //update login datetime in staffdata
+    if (0 !== result.loginLogoutRecords.length) {
+      if (
+        null ===
+        result.loginLogoutRecords[result.loginLogoutRecords.length - 1]
+          .logoutDateTime
+      ) {
+        let updatelogout =
+          result.loginLogoutRecords[result.loginLogoutRecords.length - 1];
+        updatelogout.logoutDateTime = result.loginLogoutRecords[
+          result.loginLogoutRecords.length - 1
+        ].loginDateTime.setHours(22, 0, 0, 0);
+        await updatelogout.save();
+      }
+    }
+    result.loginLogoutRecords.push({ loginDateTime: new Date() });
+    await result.save();
     res.status(200).json({ status: "ok", data: result });
   } catch (err) {
     res.status(401).json({ status: "Failed", message: err.message });
@@ -63,6 +80,11 @@ authRouter.post("/twogms/login", async (req, res) => {
 });
 authRouter.post("/twogms/logout", checkAuthentication, async (req, res) => {
   try {
+    //upadte staffdata
+    const updatelogout =
+      result.loginLogoutRecords[result.loginLogoutRecords.length - 1];
+    updatelogout.logoutDateTime = new Date();
+    await updatelogout.save();
     res.cookie("token", null, { expires: new Date(Date.now()) });
     res.json({ status: "ok", message: "Loggout successfully!" });
   } catch (err) {
