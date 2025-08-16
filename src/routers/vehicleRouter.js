@@ -179,15 +179,15 @@ vehicleRouter.post(
         },
         washingChargesData: {
           fkWashingChargesDataId: washinfo._id,
-          isChecked: true,
+          isChecked: false,
         },
         pickupChargesData: {
           fkPickupChargesDataId: washinfo._id,
-          isChecked: true,
+          isChecked: false,
         },
         dropChargesData: {
           fkDropChargesDataId: washinfo._id,
-          isChecked: true,
+          isChecked: fasle,
         },
         billPaymentStatus: -1,
         totalOutStandingAmount: totalamt,
