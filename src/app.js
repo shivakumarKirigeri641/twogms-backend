@@ -2,7 +2,7 @@ const express = require("express");
 const app = new express();
 const connectDB = require("./database/connectDB");
 const authRouter = require("./routers/authRouter");
-//const dummyRouter = require("./routers/dummyRouter");
+const dummyRouter = require("./routers/dummyRouter");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 app.use(express.json());
@@ -14,7 +14,7 @@ app.use(
   })
 );
 app.use("/", authRouter);
-//app.use("/", dummyRouter);
+app.use("/", dummyRouter);
 connectDB()
   .then(() => {
     console.log("Database connected successfully.");
