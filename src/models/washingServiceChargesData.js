@@ -1,8 +1,19 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
-const mechanicObservationsDataSchema = mongoose.Schema(
+const washingServiceChargesDataSchema = mongoose.Schema(
   {
-    list: {
+    fkGarageDataId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "garageData",
+    },
+    title: {
+      type: String,
+      required: true,
+      minLength: 0,
+      maxLength: 50,
+    },
+    //take only latest for UI
+    amountSummary: {
       type: [
         {
           title: {
@@ -59,8 +70,8 @@ const mechanicObservationsDataSchema = mongoose.Schema(
     timtimestamps: true,
   }
 );
-const mechanicObservationsData = mongoose.model(
-  "mechanicObservationsData",
-  mechanicObservationsDataSchema
+const washingServiceChargesData = mongoose.model(
+  "washingServiceChargesData",
+  washingServiceChargesDataSchema
 );
-module.exports = mechanicObservationsData;
+module.exports = washingServiceChargesData;

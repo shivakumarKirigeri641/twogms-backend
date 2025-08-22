@@ -1,7 +1,22 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
-const mechanicObservationsDataSchema = mongoose.Schema(
+const standardServiceChargesDataSchema = mongoose.Schema(
   {
+    fkGarageDataId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "garageData",
+    },
+    //only title shown, no deep details shown (if such garage owner proposes?)
+    isBaseLineService: {
+      type: Boolean,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+      minLength: 0,
+      maxLength: 50,
+    },
     list: {
       type: [
         {
@@ -10,6 +25,10 @@ const mechanicObservationsDataSchema = mongoose.Schema(
             default: "",
             minLength: 0,
             maxLength: 50,
+          },
+          isChecked: {
+            type: Boolean,
+            default: true,
           },
           comments: {
             type: String,
@@ -28,10 +47,6 @@ const mechanicObservationsDataSchema = mongoose.Schema(
             default: 0,
             min: 0,
             max: 5000,
-          },
-          isChecked: {
-            type: Boolean,
-            default: true,
           },
           cGST: {
             type: Number,
@@ -59,8 +74,8 @@ const mechanicObservationsDataSchema = mongoose.Schema(
     timtimestamps: true,
   }
 );
-const mechanicObservationsData = mongoose.model(
-  "mechanicObservationsData",
-  mechanicObservationsDataSchema
+const standardServiceChargesData = mongoose.model(
+  "standardServiceChargesData",
+  standardServiceChargesDataSchema
 );
-module.exports = mechanicObservationsData;
+module.exports = standardServiceChargesData;

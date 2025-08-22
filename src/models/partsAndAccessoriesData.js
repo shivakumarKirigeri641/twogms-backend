@@ -31,6 +31,10 @@ const partsAndAccessoriesDataSchema = mongoose.Schema(
             min: 0,
             max: 5000,
           },
+          isChecked: {
+            type: Boolean,
+            default: true,
+          },
           cGST: {
             type: Number,
             default: 0,
