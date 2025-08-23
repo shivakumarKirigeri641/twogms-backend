@@ -5,6 +5,7 @@ const authRouter = require("./routers/authRouter");
 const dummyRouter = require("./routers/dummyRouter");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const serviceRouter = require("./routers/serviceRouter");
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -14,6 +15,7 @@ app.use(
   })
 );
 app.use("/", authRouter);
+app.use("/", serviceRouter);
 app.use("/", dummyRouter);
 connectDB()
   .then(() => {
