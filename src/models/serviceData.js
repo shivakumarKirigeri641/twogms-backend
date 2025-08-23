@@ -21,6 +21,11 @@ const serviceDataSchema = mongoose.Schema(
       required: true,
       ref: "customerComplaintsData",
     },
+    fkAssignedStaffsDataId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "assignedStaffsData",
+    },
     fkMechanicObservationsDataId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
