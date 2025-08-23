@@ -41,6 +41,11 @@ const serviceDataSchema = mongoose.Schema(
       required: true,
       ref: "serviceDeliveryData",
     },
+    fkServiceFeedbackDataId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "serviceFeedbackData",
+    },
     fkNextServiceDataId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -53,8 +58,7 @@ const serviceDataSchema = mongoose.Schema(
     },
     serviceName: {
       type: String,
-      required: true,
-      minLength: 2,
+      minLength: 0,
       maxLength: 150,
     },
     serviceSequenceNumber: {

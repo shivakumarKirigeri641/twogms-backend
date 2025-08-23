@@ -6,7 +6,7 @@ const assignedStaffsDataSchema = mongoose.Schema(
       type: [
         {
           fkStaffDataId: {
-            type: Date,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "staffData",
           },

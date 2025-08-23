@@ -15,7 +15,6 @@ const serviceDeliveryDataSchema = mongoose.Schema(
           },
           reaonToPreponeOrPostpone: {
             type: String,
-            required: true,
             minLength: 0,
             maxLength: 150,
           },

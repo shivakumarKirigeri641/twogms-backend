@@ -4,6 +4,7 @@ const billingDataSchema = mongoose.Schema(
     title: {
       type: String,
       required: true,
+      default: "",
       minLength: 0,
       maxLength: 50,
     },
@@ -73,7 +74,7 @@ const billingDataSchema = mongoose.Schema(
           type: Boolean,
           default: true,
         },
-        fklabourServiceChargesData: {
+        fkLabourServiceChargesData: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "labourServiceChargesData",
@@ -86,7 +87,7 @@ const billingDataSchema = mongoose.Schema(
           type: Boolean,
           default: false,
         },
-        fkwashingServiceChargesData: {
+        fkWashingServiceChargesData: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "washingServiceChargesData",
@@ -99,7 +100,7 @@ const billingDataSchema = mongoose.Schema(
           type: Boolean,
           default: false,
         },
-        fkpickupServiceChargesData: {
+        fkPickupServiceChargesData: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "pickupServiceChargesData",
@@ -112,7 +113,7 @@ const billingDataSchema = mongoose.Schema(
           type: Boolean,
           default: false,
         },
-        fkdropServiceChargesData: {
+        fkDropServiceChargesData: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "dropServiceChargesData",
@@ -131,7 +132,7 @@ const billingDataSchema = mongoose.Schema(
           type: Boolean,
           default: true,
         },
-        fkPartsAndAccessoriesData: {
+        fkPartsAndAccessoriesDataId: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "partsAndAccessoriesData",

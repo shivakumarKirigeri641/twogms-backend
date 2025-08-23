@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const walletOfGarageCreditDataSchema = mongoose.Schema(
   {
-    fkGarageDataId: {
+    fkWalletOfGarageData: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "garageData",
+      ref: "walletOfGarageData",
     },
     creditHistory: {
       type: [

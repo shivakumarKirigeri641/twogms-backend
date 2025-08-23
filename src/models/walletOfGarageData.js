@@ -7,12 +7,10 @@ const walletOfGarageDataSchema = mongoose.Schema(
       ref: "garageData",
     },
     walletBalance: {
-      type: {
-        type: Number,
-        default: 0,
-        min: -1000,
-        max: 100000,
-      },
+      type: Number,
+      default: 0,
+      min: -1000,
+      max: 100000,
     },
   },
   {

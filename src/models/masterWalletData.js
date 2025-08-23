@@ -2,25 +2,25 @@ const mongoose = require("mongoose");
 const masterWalletDataSchema = mongoose.Schema(
   {
     walletDeductionPriceForAll: {
-      type: {
-        type: Number,
-        default: 100,
-      },
-      hikesummary: {
-        type: [
-          {
-            hikePercent: {
-              type: Number,
-              default: 0,
-            },
-            reasonForHike: {
-              type: String,
-              minLength: 0,
-              maxLength: 300,
-            },
+      type: Number,
+      default: 100,
+      min: 0,
+      max: 10000,
+    },
+    hikesummary: {
+      type: [
+        {
+          hikePercent: {
+            type: Number,
+            default: 0,
           },
-        ],
-      },
+          reasonForHike: {
+            type: String,
+            minLength: 0,
+            maxLength: 300,
+          },
+        },
+      ],
     },
   },
   {
