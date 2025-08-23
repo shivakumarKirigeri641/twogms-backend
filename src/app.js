@@ -7,6 +7,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const serviceRouter = require("./routers/serviceRouter");
 const twoWheelerRouter = require("./routers/twoWheelerRouter");
+const staffRouter = require("./routers/staffRouter");
+const serviceChargesRouter = require("./routers/serviceChargesRouter");
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -19,6 +21,8 @@ app.use("/", authRouter);
 app.use("/", serviceRouter);
 app.use("/", dummyRouter);
 app.use("/", twoWheelerRouter);
+app.use("/", staffRouter);
+app.use("/", serviceChargesRouter);
 connectDB()
   .then(() => {
     console.log("Database connected successfully.");
