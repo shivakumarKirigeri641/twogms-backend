@@ -5,9 +5,9 @@ require("dotenv").config();
 const staffData = require("../models/staffData");
 const serviceRouter = express.Router();
 
-//login
+//servicing vehicles
 serviceRouter.get(
-  "/twogms/get-servicing-vehicles",
+  "/twogms/servicing-vehicles",
   checkAuthentication,
   async (req, res) => {
     try {
@@ -18,9 +18,9 @@ serviceRouter.get(
   }
 );
 
-//logout
+//serviced vehicles
 serviceRouter.get(
-  "/twogms/get-serviced-vehicles",
+  "/twogms/serviced-vehicles",
   checkAuthentication,
   async (req, res) => {
     //firsrt check if mobile number valid (exists in coll
