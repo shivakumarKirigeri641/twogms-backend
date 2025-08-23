@@ -1,8 +1,15 @@
 const express = require("express");
 const app = new express();
 const connectDB = require("./database/connectDB");
+const authRouter = require("./routers/authRouter");
+const dummyRouter = require("./routers/dummyRouter");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const serviceRouter = require("./routers/serviceRouter");
+const twoWheelerRouter = require("./routers/twoWheelerRouter");
+const staffRouter = require("./routers/staffRouter");
+const serviceChargesRouter = require("./routers/serviceChargesRouter");
+const walletAndRechargeRouter = require("./routers/walletAndRechargeRouter");
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -11,6 +18,13 @@ app.use(
     credentials: true,
   })
 );
+app.use("/", authRouter);
+app.use("/", serviceRouter);
+app.use("/", dummyRouter);
+app.use("/", twoWheelerRouter);
+app.use("/", staffRouter);
+app.use("/", serviceChargesRouter);
+app.use("/", walletAndRechargeRouter);
 connectDB()
   .then(() => {
     console.log("Database connected successfully.");
