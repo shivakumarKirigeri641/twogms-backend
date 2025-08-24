@@ -10,14 +10,14 @@ const twoWheelerRouter = require("./routers/twoWheelerRouter");
 const staffRouter = require("./routers/staffRouter");
 const serviceChargesRouter = require("./routers/serviceChargesRouter");
 const walletAndRechargeRouter = require("./routers/walletAndRechargeRouter");
-app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     origin: "http://192.168.10.34:1234",
     credentials: true,
   })
 );
+app.use(express.json());
+app.use(cookieParser());
 app.use("/", authRouter);
 app.use("/", serviceRouter);
 app.use("/", dummyRouter);
@@ -28,7 +28,7 @@ app.use("/", walletAndRechargeRouter);
 connectDB()
   .then(() => {
     console.log("Database connected successfully.");
-    app.listen(7777, "0.0.0.0", () => {
+    app.listen(7777, () => {
       console.log("Server is listening now...");
     });
   })

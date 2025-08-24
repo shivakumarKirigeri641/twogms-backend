@@ -17,9 +17,16 @@ authRouter.post("/twogms/login/:mobilenumber", async (req, res) => {
     if (!result) {
       throw new Error("Mobile number not registered or not valid!");
     }
-    const token = await jwt.sign({ _id: result._id }, process.env.SECRET_KEY);
-    res.cookie("token", token, { expiresIn: "10s" });
-    res.status(200).json({ status: "Ok", data: result });
+    const token = await jwt.sign({ _id: result._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "none",
+      expiresIn: "30s",
+    });
+    res.status(200).json({ status: "Ok", message: "ok", data: result });
   } catch (err) {
     res.status(401).json({ status: "Failed", message: err.message });
   }
