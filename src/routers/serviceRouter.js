@@ -58,7 +58,7 @@ serviceRouter.get(
       const result = await serviceData
         .find({
           $and: [
-            { serviceStatus: true },
+            { serviceStatus: false },
             { fkGarageDataId: req.loginCredentials.fkGarageDataId },
           ],
         })
