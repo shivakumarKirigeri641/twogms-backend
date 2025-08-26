@@ -84,8 +84,16 @@ serviceRouter.get(
           path: "fkGarageDataId",
         })
         .select("serviceSequenceNumber kmDriven vehicleInDate")
-        .sort({ vehicleInDate: -1 });
-      res.status(200).json({ status: "Ok", data: result });
+        .sort({ serviceSequenceNumber: -1 });
+      let array = [];
+      let vehiclenumbervisitedlist = [];
+      result.forEach((element) => {
+        if (!vehiclenumbervisitedlist.includes(element?.fkVehicleDataId)) {
+          vehiclenumbervisitedlist.push(element?.fkVehicleDataId);
+          array.push(element);
+        }
+      });
+      res.status(200).json({ status: "Ok", data: array });
     } catch (err) {
       res.status(401).json({ status: "Failed", message: err.message });
     }
