@@ -11,8 +11,14 @@ serviceRouter.get(
   checkAuthentication,
   async (req, res) => {
     try {
+      console.log("logindata:", req.loginCredentials);
       const result = await serviceData
-        .find({ serviceStatus: true })
+        .find({
+          $and: [
+            { serviceStatus: true },
+            { fkGarageDataId: req.loginCredentials.fkGarageDataId },
+          ],
+        })
         .populate({
           path: "fkVehicleDataId",
           populate: {
@@ -50,7 +56,12 @@ serviceRouter.get(
   async (req, res) => {
     try {
       const result = await serviceData
-        .find({ serviceStatus: false })
+        .find({
+          $and: [
+            { serviceStatus: false },
+            { fkGarageDataId: req.loginCredentials.fkGarageDataId },
+          ],
+        })
         .populate({
           path: "fkVehicleDataId",
           populate: {
@@ -73,8 +84,16 @@ serviceRouter.get(
           path: "fkGarageDataId",
         })
         .select("serviceSequenceNumber kmDriven vehicleInDate")
-        .sort({ vehicleInDate: -1 });
-      res.status(200).json({ status: "Ok", data: result });
+        .sort({ serviceSequenceNumber: -1 });
+      let array = [];
+      let vehiclenumbervisitedlist = [];
+      result.forEach((element) => {
+        if (!vehiclenumbervisitedlist.includes(element?.fkVehicleDataId)) {
+          vehiclenumbervisitedlist.push(element?.fkVehicleDataId);
+          array.push(element);
+        }
+      });
+      res.status(200).json({ status: "Ok", data: array });
     } catch (err) {
       res.status(401).json({ status: "Failed", message: err.message });
     }

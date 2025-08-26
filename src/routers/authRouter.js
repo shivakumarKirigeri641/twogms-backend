@@ -21,10 +21,7 @@ authRouter.post("/twogms/login/:mobilenumber", async (req, res) => {
       expiresIn: "1d",
     });
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "none",
-      expiresIn: "30s",
+      expiresIn: "1d",
     });
     res.status(200).json({ status: "Ok", message: "ok", data: result });
   } catch (err) {

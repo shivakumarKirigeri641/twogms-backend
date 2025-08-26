@@ -152,7 +152,7 @@ const billingDataSchema = mongoose.Schema(
             type: Number,
             default: 0,
             min: 0,
-            max: 5000,
+            max: 50000,
           },
           discountApplied: {
             type: Number,
@@ -164,13 +164,13 @@ const billingDataSchema = mongoose.Schema(
             type: Number,
             default: 0,
             min: 0,
-            max: 5000,
+            max: 50000,
           },
           cashPay: {
             type: Number,
             default: 0,
             min: 0,
-            max: 5000,
+            max: 50000,
           },
           payStatus: {
             type: Number,
