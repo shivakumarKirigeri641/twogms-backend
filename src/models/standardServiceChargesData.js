@@ -66,6 +66,31 @@ const standardServiceChargesDataSchema = mongoose.Schema(
             min: 0,
             max: 100,
           },
+          //take only latest for UI
+          amountSummary: {
+            type: [
+              {
+                amount: {
+                  type: Number,
+                  default: 0,
+                  min: 0,
+                  max: 5000,
+                },
+                cGST: {
+                  type: Number,
+                  default: 0,
+                  min: 0,
+                  max: 100,
+                },
+                sGST: {
+                  type: Number,
+                  default: 0,
+                  min: 0,
+                  max: 100,
+                },
+              },
+            ],
+          },
         },
       ],
     },
