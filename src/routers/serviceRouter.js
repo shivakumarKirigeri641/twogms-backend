@@ -11,8 +11,14 @@ serviceRouter.get(
   checkAuthentication,
   async (req, res) => {
     try {
+      console.log("logindata:", req.loginCredentials);
       const result = await serviceData
-        .find({ serviceStatus: true })
+        .find({
+          $and: [
+            { serviceStatus: true },
+            { fkGarageDataId: req.loginCredentials.fkGarageDataId },
+          ],
+        })
         .populate({
           path: "fkVehicleDataId",
           populate: {
@@ -50,7 +56,12 @@ serviceRouter.get(
   async (req, res) => {
     try {
       const result = await serviceData
-        .find({ serviceStatus: false })
+        .find({
+          $and: [
+            { serviceStatus: true },
+            { fkGarageDataId: req.loginCredentials.fkGarageDataId },
+          ],
+        })
         .populate({
           path: "fkVehicleDataId",
           populate: {
