@@ -440,4 +440,91 @@ serviceRouter.post(
     }
   }
 );
+
+//save-service
+serviceRouter.put(
+  "/twogms/save-vehicle-service/:serviceid",
+  checkAuthentication,
+  async (req, res) => {
+    try {
+      if (!req?.params?.serviceid) {
+        throw new Error("Invalid information provided.");
+      }
+      if (!req.body) {
+        throw new Error("Invalid information provided.");
+      }
+      let serviceinfo = await serviceData.findById(req?.params?.serviceid);
+      if (!serviceinfo) {
+        throw new Error("Invalid information provided.");
+      }
+
+      //mech
+      let mechanicObservationsData_info =
+        await mechanicObservationsData.findById(
+          serviceinfo?.fkMechanicObservationsDataId
+        );
+      mechanicObservationsData_info.list = req?.body?.mechanicObservations;
+      await mechanicObservationsData_info.save();
+
+      //cust cmplaints
+      let customerComplaintsData_info = await customerComplaintsData.findById(
+        serviceinfo?.fkCustomerComplaintsDataId
+      );
+      customerComplaintsData_info.list = req?.body?.customerComplaints;
+      await customerComplaintsData_info.save();
+
+      //after service
+      let afterServiceComplaintsData_info =
+        await afterServiceComplaintsData.findById(
+          serviceinfo?.fkAfterServiceComplaintsDataId
+        );
+      afterServiceComplaintsData_info.list = req?.body?.afterServiceComplaints;
+      await afterServiceComplaintsData_info.save();
+
+      //parts
+      let partsAndAccessoriesData_info = await partsAndAccessoriesData.findById(
+        serviceinfo?.fkPartsAndAccessoriesDataId
+      );
+      partsAndAccessoriesData_info.list = req?.body?.partsAndAccessories;
+      await partsAndAccessoriesData_info.save();
+
+      //assignedStaffs
+      let assignedStaffs_info = await assignedStaffsData.findById(
+        serviceinfo?.fkAssignedStaffsDataId
+      );
+      assignedStaffs_info.staffs = req?.body?.assignedStaffs;
+      await assignedStaffs_info.save();
+
+      //bill
+      let billing_info = await billingData.findById(
+        serviceinfo?.fkBillingDataId
+      );
+      billing_info.title = "test";
+      billing_info.pickupServiceChargesData.isChecked =
+        req?.body?.fkBillingDataId?.pickupServiceChargesData?.isChecked;
+      billing_info.washingServiceChargesData.isChecked =
+        req?.body?.fkBillingDataId?.washingServiceChargesData?.isChecked;
+      billing_info.partsAndAccessoriesData.isChecked =
+        req?.body?.fkBillingDataId?.partsAndAccessoriesData?.isChecked;
+      billing_info.partsAndAccessoriesData.isChecked =
+        req?.body?.fkBillingDataId?.partsAndAccessoriesData?.isChecked;
+      billing_info.standardServiceChargesData.isChecked =
+        req?.body?.fkBillingDataId?.standardServiceChargesData?.isChecked;
+      billing_info.standardServiceChargesData.standardServicesAppliedList =
+        req?.body?.fkBillingDataId?.standardServiceChargesData?.standardServicesAppliedList;
+
+      billing_info.totalOutStandingAmount =
+        req?.body?.fkBillingDataId?.totalOutStandingAmount;
+
+      await billing_info.save();
+
+      serviceinfo.kmDriven = req?.body?.kmDriven;
+      serviceinfo.fuelAtService = req?.body?.fuelAtService;
+      await serviceinfo.save();
+      res.status(200).json({ status: "Ok" });
+    } catch (err) {
+      res.status(401).json({ status: "Failed", message: err.message });
+    }
+  }
+);
 module.exports = serviceRouter;

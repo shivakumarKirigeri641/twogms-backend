@@ -89,6 +89,16 @@ const serviceDataSchema = mongoose.Schema(
       required: true,
       default: new Date(Date.now()),
     },
+    comments: {
+      type: String,
+      default: "",
+      minLength: 0,
+      maxLength: 300,
+    },
+    serviceCancellationStatus: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timtimestamps: true,

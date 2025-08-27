@@ -63,6 +63,30 @@ const billingDataSchema = mongoose.Schema(
                 min: 0,
                 max: 100,
               },
+              amountSummary: {
+                type: [
+                  {
+                    amount: {
+                      type: Number,
+                      default: 0,
+                      min: 0,
+                      max: 5000,
+                    },
+                    cGST: {
+                      type: Number,
+                      default: 0,
+                      min: 0,
+                      max: 100,
+                    },
+                    sGST: {
+                      type: Number,
+                      default: 0,
+                      min: 0,
+                      max: 100,
+                    },
+                  },
+                ],
+              },
             },
           ],
         },
