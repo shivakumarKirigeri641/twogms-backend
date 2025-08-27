@@ -89,11 +89,6 @@ const serviceDataSchema = mongoose.Schema(
       required: true,
       default: new Date(Date.now()),
     },
-    isLatestService: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
   },
   {
     timtimestamps: true,

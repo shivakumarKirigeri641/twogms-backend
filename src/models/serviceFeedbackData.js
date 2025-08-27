@@ -4,8 +4,9 @@ const serviceFeedbackDataSchema = mongoose.Schema(
   {
     ratings: {
       type: Number,
-      min: 1,
+      min: 0,
       max: 5,
+      default: 0,
     },
     comments: {
       type: String,
