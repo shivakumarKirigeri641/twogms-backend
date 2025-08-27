@@ -64,6 +64,7 @@ twoWheelerRouter.get(
             {
               fkGarageDataId: req?.loginCredentials?.fkGarageDataId,
               fkVehicleDataId: result?._id,
+              serviceStatus: false,
             },
           ],
         })
@@ -119,6 +120,9 @@ twoWheelerRouter.get(
             "labourServiceChargesData.fkLabourServiceChargesData washingServiceChargesData.fkWashingServiceChargesData pickupServiceChargesData.fkPickupServiceChargesData dropServiceChargesData.fkDropServiceChargesData partsAndAccessoriesData.fkPartsAndAccessoriesDataId",
         })
         .sort({ serviceSequenceNumber: -1 });
+      if (0 === serviceinfo.length) {
+        throw new Error("No information found!");
+      }
       res.status(200).json({ status: "Ok", data: { result, serviceinfo } });
     } catch (err) {
       res.status(401).json({ status: "Failed", message: err.message });
