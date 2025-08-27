@@ -27,7 +27,7 @@ twoWheelerRouter.get(
     try {
       const result = await vehicleData
         .findOne({
-          vehicleNumber: req.params.vehiclenumber,
+          vehicleNumber: req.params.vehiclenumber.toUpperCase(),
         })
         .populate("fkCustomerDataId fkTwoWheelerDataId");
       if (!result) {
