@@ -208,6 +208,7 @@ serviceRouter.post(
       //deduct wallet amount.
       let vehicleDataId = null;
       let customerDataId = null;
+      console.log("login:", req.loginCredentials.fkGarageDataId);
       const vehicledetails = await vehicleData
         .findOne({
           vehicleNumber: req.body.vehicleNumber,
@@ -229,6 +230,7 @@ serviceRouter.post(
       const washinfo = await washingServiceChargesData.findOne({
         fkGarageDataId: req.loginCredentials.fkGarageDataId,
       });
+      console.log("wash:", washinfo);
       const lbrinfo = await labourServiceChargesData.findOne({
         fkGarageDataId: req.loginCredentials.fkGarageDataId,
       });
@@ -352,10 +354,8 @@ serviceRouter.post(
       //std
       let standardServiceChargesData_info = {
         isChecked:
-          req?.body?.fkBillingDataId?.partsAndAccessoriesData?.isChecked,
-        standardServicesAppliedList:
-          req?.body?.fkBillingDataId?.standardServiceChargesData
-            ?.standardServicesAppliedList,
+          req?.body?.fkBillingDataId?.standardServiceChargesData?.isChecked,
+        standardServicesAppliedList: stdinfo?.list,
       };
       let billing_info = new billingData({
         labourServiceChargesData: labourServiceChargesData_info,
